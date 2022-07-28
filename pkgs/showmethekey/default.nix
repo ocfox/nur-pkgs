@@ -22,16 +22,14 @@
 stdenv.mkDerivation rec {
   pname = "showmethekey";
   version = "1.7.3";
+
   src = fetchFromGitHub {
     owner = "AlynxZhou";
     repo = "showmethekey";
-    rev = "2fff7a5cb10f9ea59102241b46578c56f994f680";
+    rev = "v${version}";
     fetchSubmodules = false;
     sha256 = "sha256-hq4X4dG25YauMjsNXC6Flco9pEpVj3EM2JiFWbRrPaA=";
   };
-
-  enableParallelBuilding = true;
-  dontFixCmake = true;
 
   nativeBuildInputs = [
     glib
