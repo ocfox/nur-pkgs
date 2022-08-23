@@ -53,7 +53,7 @@ rustPlatform.buildRustPackage rec {
   meta = with lib; {
     description = "Unofficial Linux QQ client, based on GTK4 and libadwaita, developed with Rust and Relm4.";
     homepage = "https://github.com/lomirus/gtk-qq";
-    license = licenses.agpl30;
+    license = licenses.agpl3Only;
   };
 }
 
