@@ -7,12 +7,16 @@
 #     nix-build -A mypackage
 {pkgs ? import <nixpkgs> {}}: {
   # The `lib`, `modules`, and `overlay` names are special
-  lib = import ./lib {inherit pkgs;}; # functions
+  lib = import ./lib {inherit pkgs;};
   modules = import ./modules; # NixOS modules
   overlays = import ./overlays; # nixpkgs overlays
 
   example-package = pkgs.callPackage ./pkgs/example-package {};
   showmethekey = pkgs.callPackage ./pkgs/showmethekey {};
+
+  # discord-screenaudio = pkgs.libsForQt5.callPackage ./pkgs/discord-screenaudio {};
+  gtk-qq = pkgs.callPackage ./pkgs/gtk-qq {};
+
   # some-qt5-package = pkgs.libsForQt5.callPackage ./pkgs/some-qt5-package { };
   # ...
 }
