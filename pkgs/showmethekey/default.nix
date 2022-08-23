@@ -1,54 +1,42 @@
-{
-  lib,
-  stdenv,
-  fetchFromGitHub,
-  cmake,
-  glib,
-  meson,
-  ninja,
-  libevdev,
-  json-glib,
-  cairo,
-  pango,
-  polkit,
-  libinput,
-  gtk4,
-  gtk3,
-  wrapGAppsHook,
-  libxkbcommon,
-  pkg-config,
-  ...
-} @ args:
+{ lib
+, stdenv
+, fetchFromGitHub
+, meson
+, ninja
+, libevdev
+, json-glib
+, cairo
+, libinput
+, gtk4
+, wrapGAppsHook
+, libxkbcommon
+, pkg-config
+}:
 stdenv.mkDerivation rec {
   pname = "showmethekey";
-  version = "1.7.3";
+  version = "04b04e468101d3bfa08a24f5dde9fb1c6cf27a22";
 
   src = fetchFromGitHub {
     owner = "AlynxZhou";
-    repo = "showmethekey";
-    rev = "v${version}";
-    fetchSubmodules = false;
-    sha256 = "sha256-hq4X4dG25YauMjsNXC6Flco9pEpVj3EM2JiFWbRrPaA=";
+    repo = pname;
+    rev = version;
+    hash = "sha256-pfqlfAUl7a3xvH5HuTvb2csViYqGPv170XY0xlNRn1w=";
   };
 
   nativeBuildInputs = [
-    glib
     meson
     ninja
-    cmake
+    json-glib
     pkg-config
     wrapGAppsHook
   ];
 
   buildInputs = [
-    libevdev
-    json-glib
-    cairo
-    pango
-    polkit
-    libinput
     gtk4
-    gtk3
+    cairo
+    libevdev
+    libinput
     libxkbcommon
   ];
+
 }
