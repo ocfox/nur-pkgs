@@ -14,6 +14,7 @@
 , glib
 , ninja
 , libxml2
+, pkgs
 }:
 rustPlatform.buildRustPackage rec {
   pname = "gtk-qq";
@@ -30,7 +31,7 @@ rustPlatform.buildRustPackage rec {
 
   RUSTC_BOOTSTRAP = 1;
 
-  buildInputs = [ openssl gtk4 libadwaita sqlite ];
+  buildInputs = [ openssl gtk4 libadwaita sqlite pkgs.rust-bin.nightly.latest.default ];
   nativeBuildInputs = [ pkg-config grpc-tools meson glib ninja libxml2 ];
 
   configurePhase = ''
@@ -42,11 +43,17 @@ rustPlatform.buildRustPackage rec {
 
   buildPhase = ''
     cargo build --release
-  ''; 
+  '';
 
   installPhase = ''
     mkdir -p $out/bin
     cp target/release/gtk-qq $out/bin
   '';
+
+  meta = with lib; {
+    description = "Unofficial Linux QQ client, based on GTK4 and libadwaita, developed with Rust and Relm4.";
+    homepage = "https://github.com/lomirus/gtk-qq";
+    license = licenses.agpl30;
+  };
 }
 
