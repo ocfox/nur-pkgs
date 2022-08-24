@@ -14,7 +14,6 @@
 , glib
 , ninja
 , libxml2
-, pkgs
 }:
 rustPlatform.buildRustPackage rec {
   pname = "gtk-qq";
@@ -31,7 +30,7 @@ rustPlatform.buildRustPackage rec {
 
   RUSTC_BOOTSTRAP = 1;
 
-  buildInputs = [ openssl gtk4 libadwaita sqlite pkgs.rust-bin.nightly.latest.default ];
+  buildInputs = [ openssl gtk4 libadwaita sqlite ];
   nativeBuildInputs = [ pkg-config grpc-tools meson glib ninja libxml2 ];
 
   configurePhase = ''
